@@ -1,0 +1,11 @@
+#Referenced installed packages
+Referenced\ Packages/
+.metadata
+.settings
+.session
+.org_metadata
+.describe
+.apex_file_properties
+#OS junk files
+*.DS_Store
+**/user.properties
