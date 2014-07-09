@@ -1,0 +1,9 @@
+== To setup the Force.com migration tool locally
+
+Have Java & Ant installed locally.
+Find the ant root on your system.  Mine's at /usr/share/ant
+Copy ant-salesforce.jar to the lib directory for ant.
+
+== To deploy to the staging org ==
+
+ant deployUnpackaged
