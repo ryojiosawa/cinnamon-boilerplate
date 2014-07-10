@@ -10,3 +10,4 @@ Referenced\ Packages/
 *.DS_Store
 **/user.properties
 output.xml
+*.sublime*

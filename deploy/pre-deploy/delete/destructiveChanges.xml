@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+	<version>28.0</version>
+	<!-- Add a set of components to delete here -->
+	<types>
+		<members>CN_BatchCommandProcessor</members>
+		<members>CN_BatchCommandProcessorTest</members>
+		<members>CN_BatchRunner</members>
+		<members>CN_BatchRunnerTest</members>
+		<members>CN_MockBatchRunner</members>
+		<members>CN_UserExtensions</members>
+		<members>CN_UserExtensionUrlRewriter</members>
+		<name>ApexClass</name>
+	</types> 
+	<types>
+		<members>CN_UserExtensions</members>
+		<name>ApexPage</name>
+	</types> 
+</Package>

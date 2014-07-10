@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Apex_Selenium_Client</fullName>
+    <namespacePrefix>28.0</namespacePrefix>
+    <version>28.0</version>
+</Package>
