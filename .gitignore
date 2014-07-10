@@ -9,3 +9,4 @@ Referenced\ Packages/
 #OS junk files
 *.DS_Store
 **/user.properties
+output.xml

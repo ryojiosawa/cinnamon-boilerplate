@@ -17,8 +17,8 @@
     <target name="deployUnpackaged" 
     	description="Deploys the current metadata">
       <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" 
-      	deployRoot="../src" runAllTests="true"/>
-    	<antcall target="postInstall"/>
+      	deployRoot="../src" runAllTests="false"/>
+    	<!--antcall target="postInstall"/-->
     </target>
 	
     <target name="deleteComponents"

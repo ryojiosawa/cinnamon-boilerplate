@@ -45,15 +45,9 @@
   <triggers class="vector"/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.27">
-      <project>ccli</project>
-      <filter>*/*.jar</filter>
-      <target></target>
-      <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
-    </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
       <command>echo &quot;Start Cinnamon Test Suite...&quot;
-			   java -jar target/ccli-0.0.1.jar $USERNAME $PASSWORD -update_timeout $MAX_UPDATE_TIMEOUT -max_loop_limit $MAX_LOOP_LIMIT</command>
+        java -jar ../ccli-0.0.1.jar $USERNAME $PASSWORD -update_timeout $MAX_UPDATE_TIMEOUT -max_loop_limit $MAX_LOOP_LIMIT</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
