@@ -46,7 +46,10 @@
     </target>
 
     <target name="run" description="Run Cinnamon tests">
-      <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="../src" runAllTests="false"/>
+   	<java classname="cinnamon.Ccli" fork="true">
+    		<classpath path="./lib/ccli.jar" />
+			<arg line="${sf.username} ${sf.password}" />
+    	</java>
     </target>
 
 	<target name="copyPackageXML" description="Copies src/package.xml as destructiveChanges.xml">
@@ -60,7 +63,7 @@
 
     <target name="clean" description="Delete all metadata and uninstall Cinnamon packages" depends="delete, uninstall"></target>
 
-	<target name="updateOrgSettings" description="configures cinnamon settings for selenium execution">
+	<target name="updateOrgSettings" description="Configures Cinnamon settings">
 		<exec executable="${basedir}/config.sh">
 			<arg value="${sf.username}" />
 			<arg value="${sf.password}" />

@@ -1,4 +1,5 @@
 #Referenced installed packages
+node_modules/*
 Referenced\ Packages/
 .metadata
 .settings
