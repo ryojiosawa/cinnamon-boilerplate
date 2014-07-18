@@ -1,0 +1,10 @@
+{
+	"username": "admin@cinnamon.na5.com11",
+	"password": "123456",
+	"serverUrl": "https://login.salesforce.com",
+	"sauceUsername": "rosawa10",
+	"sauceAccessKey": "5062b8df-456c-4f5a-8ddc-15a6779c12b3",
+	"seleniumProxyURL": "ondemand.saucelabs.com",
+	"seleniumProxyPort": "80",
+	"testPrefix": "Test"
+}

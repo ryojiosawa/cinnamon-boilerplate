@@ -1,0 +1,130 @@
+<project name="Metadata management for the BatchRunner project" default="cleanDeploy" basedir="." xmlns:sf="antlib:com.salesforce">
+
+    <property file="user.properties"/>
+    <property file="build.properties"/>
+    <property environment="env"/>
+	
+	<import file="lib/exec_anon.xml"/>
+	
+	<typedef 
+		uri="antlib:com.salesforce" 
+		resource="com/salesforce/antlib.xml" 
+		classpath="${basedir}/lib/ant-salesforce.jar"/>
+		
+	<taskdef 
+		resource="net/sf/antcontrib/antlib.xml" 
+		classpath="${basedir}/lib/ant-contrib-1.0b3.jar"
+		/>
+
+    <target name="cleanDeploy" 
+    	description="Cleans org and deploys the current metadata (which is assumed to exist)"
+    	depends="preDeploy, deployUnpackaged">
+   	</target>
+    		
+    <target name="deployUnpackaged" 
+    	description="Deploys the current metadata">
+      <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" 
+      	deployRoot="../src" runAllTests="false"/>
+    </target>
+
+	
+    <target name="deleteComponents"
+    	description="Used to delete unused metadata that may have been created in previous deployments">
+      <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" 
+      	deployRoot="delete" ignoreWarnings= "true"/>
+    </target>
+
+    <target name="preDeploy"
+    	description="Refreshes the org: deletes current metadata, uninstalls and reinstalls base packages">
+    	<antcall target="preUninstall" />
+	    <antcall target="uninstallPackages"/>
+    	<antcall target="installBasePackages"/>
+    </target>
+
+    <target name="installBasePackages"
+    	description="Installs base packages">
+	   	<sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" 
+	   		deployRoot="./pre-deploy/install/src" runAllTests="false"/>
+    </target>
+	   			
+	<!--TODO: generate the destructive xml file from package.xml-->
+	<target name="deleteCurrentComponents"
+		description="Deletes current deployed components"
+		depends="preUninstall"> 
+      <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" 
+      	deployRoot="./pre-deploy/delete" runAllTests="false"/>
+    </target>
+
+	<target name="updateCurrentComponentForDeletion"
+		description="Copies current package.xml file to destructiveChanges.xml">
+		<copy file="../src/package.xml" tofile="./pre-uninstall/delete/destructiveChanges.xml"/>
+		<echoxml file="./pre-deploy/delete/package.xml">
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <version>28.0</version>
+</Package>
+		</echoxml>		
+	</target>
+			
+	<target name="testIfPackageInstalled" 
+		description="Checks if the package is installed by trying to retrieve it"
+		>
+		<mkdir dir="${basedir}/retrieveOutput"/>
+		<trycatch property="retrieve.message">
+			<try>
+				<echo message="Checking for installed pacakges..."/>
+				<antcall target="retrievePackageDetails"/>
+				<echo message="Pacakges installed. Uninstalling..."/>
+			</try>
+			<catch>
+				<echo>Retrieve Message: ${retrieve.message}</echo>
+				<property name="cn.seleniumNotInstalled" value="true"/>
+			</catch>
+		</trycatch>
+		<delete dir="${basedir}/retrieveOutput"/> 
+	</target>
+	
+	<target name="retrievePackageDetails"
+		description="Retrieves the contents of Apex Selenium Client into the retrieveOuput directory">
+		<sf:retrieve username="${sf.username}" password="${sf.password}" 
+			serverurl="${sf.serverurl}" retrieveTarget="${basedir}/retrieveOutput" packageNames="Apex Selenium Client"/>
+	</target>
+
+	<target name="uninstallPackages" unless="cn.seleniumNotInstalled" 
+		depends="testIfPackageInstalled">
+      	<sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" 
+      		deployRoot="./pre-deploy/uninstall/src" runAllTests="false"/>
+	</target>
+
+    <target name="preUninstall" 
+    	description="Deletes or updates metadata that may be dependent on package being deleted"
+    	depends="cleanSiteDependencies, updateCurrentComponentForDeletion">
+      <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" 
+      	deployRoot="./pre-uninstall/update/src" runAllTests="false"/>
+      <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" 
+      	deployRoot="./pre-uninstall/delete" runAllTests="false"/>
+    </target>
+	
+	<target name="updateOrgSettings"
+		description="configures cinnamon settings for selenium execution">
+		<exec executable="${basedir}/config.sh">
+			<arg value="${sf.username}" />
+			<arg value="${sf.password}" />
+			<arg value="${cn.sauce.username}" />
+			<arg value="${cn.sauce.token}" />
+		</exec>
+	</target>
+	
+	<target name="cleanSiteDependencies"
+		description="run selenium script to clean up site dependencies">
+		  <antcall target="ExecAnonScript">
+		    <param name="what" value="scripts/cleanSiteDependencies.apex" />
+		  </antcall>
+	</target>
+	
+	<target name="configureCinnamonSite"
+		description="run selenium script to clean up site dependencies">
+		  <antcall target="ExecAnonScript">
+		    <param name="what" value="scripts/configureCinnamonSite.apex" />
+		  </antcall>
+	</target>
+</project>

@@ -1,9 +1,15 @@
 /**
  * Created by Ryo Osawa on 7/14/14.
  */
+var jsforce = require('jsforce'),
+    fs = require('fs'),
+    CLIENT_ID = '__4l3n4c',
+    REST_URL = '/services/apexrest/cinnamon/config/';
+
 module.exports = function(grunt) {
 
-    require('load-grunt-tasks')(grunt);
+    grunt.loadNpmTasks('grunt-shell');
+    grunt.loadTasks('tasks');
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -38,11 +44,10 @@ module.exports = function(grunt) {
                 'cd ant',
                 'ant -lib <%= sfdcAntTool %> run'
                 ].join('&&')
-            },
+            }
         }
     });
 
-    grunt.loadNpmTasks('grunt-shell');
     grunt.registerTask('install', ['shell:install']);
     grunt.registerTask('uninstall', ['shell:uninstall']);
     grunt.registerTask('deploy', ['shell:deploy']);

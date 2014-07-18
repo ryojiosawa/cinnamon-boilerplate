@@ -13,7 +13,7 @@
 	   	<sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="./install/src" runAllTests="false"/>
     </target>
 
-	<target name="uninstall" unless="cn.seleniumNotInstalled" depends="testIfPackageInstalled, delete">
+	<target name="uninstall" unless="cn.seleniumNotInstalled" depends="testIfPackageInstalled">
       	<sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="./uninstall/src" runAllTests="false"/>
 	</target>
 
