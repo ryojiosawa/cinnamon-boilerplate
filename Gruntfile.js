@@ -13,36 +13,37 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        props: grunt.file.readJSON('cinnamon.json'),
         sfdcAntTool: '.lib/ant-salesforce.jar',
         shell: {
             install: {
                 command: [
                 'cd ant',
-                'ant -lib <%= sfdcAntTool %> install'
+                'ant -lib <%= sfdcAntTool %> install -Dsf.username=<%= props.username %> -Dsf.password=<%= props.password %> -Dsf.serverurl=<%= props.serverUrl %>'
                 ].join('&&')
             },
             uninstall: {
                 command: [
                 'cd ant',
-                'ant -lib <%= sfdcAntTool %> uninstall'
+                'ant -lib <%= sfdcAntTool %> uninstall -Dsf.username=<%= props.username %> -Dsf.password=<%= props.password %> -Dsf.serverurl=<%= props.serverUrl %>'
                 ].join('&&')
             },
             deploy: {
                 command: [
                 'cd ant',
-                'ant -lib <%= sfdcAntTool %> deploy'
+                'ant -lib <%= sfdcAntTool %> deploy -Dsf.username=<%= props.username %> -Dsf.password=<%= props.password %> -Dsf.serverurl=<%= props.serverUrl %>'
                 ].join('&&')
             },
             delete: {
                 command: [
                 'cd ant',
-                'ant -lib <%= sfdcAntTool %> delete'
+                'ant -lib <%= sfdcAntTool %> delete -Dsf.username=<%= props.username %> -Dsf.password=<%= props.password %> -Dsf.serverurl=<%= props.serverUrl %>'
                 ].join('&&')
             },
             run: {
                 command: [
                 'cd ant',
-                'ant -lib <%= sfdcAntTool %> run'
+                'ant -lib <%= sfdcAntTool %> run -Dsf.username=<%= props.username %> -Dsf.password=<%= props.password %> -Dsf.serverurl=<%= props.serverUrl %>'
                 ].join('&&')
             }
         }
