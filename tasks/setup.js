@@ -3,16 +3,17 @@
  */
 var jsforce = require('jsforce'),
     fs = require('fs'),
+    _ = require('underscore'),
     CLIENT_ID = '__4l3n4c',
-    REST_URL = '/services/apexrest/cinnamon/config/';
+    CINNAMON_REST_BASEURL = '/services/apexrest/cinnamon';
 
 module.exports = function (grunt) {
+
+    var config = grunt.file.readJSON('./cinnamon.json');
 
     grunt.registerTask('setup', function () {
         var done = this.async();
 
-        //var config = JSON.parse(fs.readFileSync('./cinnamon.json'));
-        var config = grunt.file.readJSON('./cinnamon.json');
         var conn = new jsforce.Connection();
 
         conn.login(config.username, config.password, function (err, userInfo) {
@@ -31,9 +32,41 @@ module.exports = function (grunt) {
                 clientId: CLIENT_ID
             };
 
-            grunt.log.writeln("Updating Cinnamon settings...");
-            conn.apex.post(REST_URL, data, function (err, res) {
+            conn.apex.post(CINNAMON_REST_BASEURL + '/config', data, function (err, res) {
                 if (err) done(err);
+
+                grunt.log.writeln("Cinnamon settings updated.");
+                done();
+            });
+
+            // TODO: update remote site setting - self
+        });
+    });
+
+    grunt.registerTask('show', function () {
+        var done = this.async(),
+            tests;
+
+        var conn = new jsforce.Connection();
+
+        conn.login(config.username, config.password, function (err, userInfo) {
+            if (err) done(err);
+
+            conn.apex.get(CINNAMON_REST_BASEURL + '/tests/definition', function (err, res) {
+                if (err) done(err);
+
+                grunt.log.writeln('Number of Tests:' + res.length);
+                _.chain(res)
+                    .pluck('Name')
+                    .sortBy(function(a, b) {
+                        if (a > b) return 1;
+                        if (a < b) return -1;
+                        return 0;})
+                    .each(function(test) {
+                        grunt.log.writeln(test);
+                    });
+
+                done();
             });
         });
     });
