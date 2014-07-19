@@ -1,9 +1,6 @@
 <project name="Cinnamon Ant project" default="cleanDeploy" basedir="." xmlns:sf="antlib:com.salesforce">
 
-    <property file="user.properties"/>
-    <property file="build.properties"/>
     <property environment="env"/>
-	
 	<import file="lib/exec_anon.xml"/>
 	
 	<typedef uri="antlib:com.salesforce" resource="com/salesforce/antlib.xml" classpath="${basedir}/lib/ant-salesforce.jar"/>
@@ -62,13 +59,4 @@
 	</target>
 
     <target name="clean" description="Delete all metadata and uninstall Cinnamon packages" depends="delete, uninstall"></target>
-
-	<target name="updateOrgSettings" description="Configures Cinnamon settings">
-		<exec executable="${basedir}/config.sh">
-			<arg value="${sf.username}" />
-			<arg value="${sf.password}" />
-			<arg value="${cn.sauce.username}" />
-			<arg value="${cn.sauce.token}" />
-		</exec>
-	</target>	
 </project>

@@ -12,3 +12,4 @@ Referenced\ Packages/
 **/user.properties
 output.xml
 *.sublime*
+.idea/*
