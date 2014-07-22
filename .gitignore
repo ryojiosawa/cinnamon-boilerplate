@@ -9,7 +9,7 @@ Referenced\ Packages/
 .apex_file_properties
 #OS junk files
 *.DS_Store
-**/user.properties
 output.xml
 *.sublime*
 .idea/*
+cinnamon.json

@@ -1,6 +1,8 @@
 <project name="Cinnamon Ant project" basedir="." xmlns:sf="antlib:com.salesforce">
 
     <property environment="env"/>
+    <typedef uri="antlib:com.salesforce" resource="com/salesforce/antlib.xml" classpath="${basedir}/lib/ant-salesforce.jar"/>
+    <taskdef resource="net/sf/antcontrib/antlib.xml" classpath="${basedir}/lib/ant-contrib-1.0b3.jar"/>
 	
     <target name="install" description="Installs Cinnamon packages">
 	   	<sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="./install/src" runAllTests="false"/>

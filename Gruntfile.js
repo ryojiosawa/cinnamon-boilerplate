@@ -14,7 +14,8 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         props: grunt.file.readJSON('cinnamon.json'),
-        sfdcAntTool: '.lib/ant-salesforce.jar',
+        sfdcAntTool: './lib/ant-salesforce.jar',
+        ccli: './lib/ccli.jar',
         shell: {
             install: {
                 command: [
@@ -43,7 +44,7 @@ module.exports = function(grunt) {
             run: {
                 command: [
                 'cd ant',
-                'ant -lib <%= sfdcAntTool %> run -Dsf.username=<%= props.username %> -Dsf.password=<%= props.password %> -Dsf.serverurl=<%= props.serverUrl %>'
+                'java -jar <%= ccli %> <%= props.username %> <%= props.password %> -s <%= props.serverUrl %>'
                 ].join('&&')
             }
         }
