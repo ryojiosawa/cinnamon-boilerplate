@@ -2,10 +2,8 @@
  * Created by Ryoji Osawa on 7/14/14.
  */
 var jsforce = require('jsforce'),
-    fs = require('fs'),
     _ = require('underscore'),
     async = require('async'),
-    CLIENT_ID = '__4l3n4c',
     CINNAMON_REST_BASE_URL = '/services/apexrest/cinnamon',
     SELF_REMOTE_SITE = 'cinnamon__self';
 
@@ -37,8 +35,7 @@ module.exports = function (grunt) {
                         testPrefix: config.testPrefix,
                         orgUnderTestUsername: config.username,
                         orgUnderTestLoginUrl: conn.instanceUrl
-                    },
-                    clientId: CLIENT_ID
+                    }
                 };
 
                 conn.apex.post(CINNAMON_REST_BASE_URL + '/config', data, function (err, res) {
@@ -53,9 +50,9 @@ module.exports = function (grunt) {
             },
             remoteSiteSettings: function (callback) {
                 var data = {
-                    currentName: 'cinnamon__self',
+                    currentName: SELF_REMOTE_SITE,
                     metadata: {
-                        fullName: 'cinnamon__self',
+                        fullName: SELF_REMOTE_SITE,
                         isActive: true,
                         url: conn.instanceUrl
                     }
