@@ -10,3 +10,6 @@ Cinnamon Boilerplate is a Force.com project template that helps you kickstart an
 
 That’s all it!  You’re now good to go!
 
+#####Install Cinnamon `grunt install`
+#####Install Cinnamon `grunt install`
+#####Install Cinnamon `grunt install`
