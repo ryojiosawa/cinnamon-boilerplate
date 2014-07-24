@@ -34,3 +34,13 @@ This grunt task removes all the deployed Cinnamon tests from your Salesforce org
 
 ####`grunt uninstall`
 This grunt task uninstalls Cinnamon package from your Salesforce oranization.  You must run `grunt delete` and remove all Cinnamon tests before uninstalling Cinnamon package
+
+--
+Follow the steps below to install Cinnamon into a Salesforce organization, configure settings, deploy a sample Cinnamon test, and finally run the sample test
+
+1. `grunt install`
+2. edit cinnamon.json
+3. `grunt setup`
+4. `grunt deploy` to deploy a sample Cinnamon test
+5. `grunt show` to make sure we have at lesat one test to run
+6. `grunt run`
