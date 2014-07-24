@@ -10,20 +10,24 @@ Cinnamon Boilerplate is a Force.com project template that helps you kickstart an
 
 That’s all it!  You’re now good to go!
 
-###`grunt install`
+--
+####Use the following commands to manage your Cinnamon project
+
+
+####`grunt install`
 This grunt task installs the most recent version of Cinnamon package into your Salesforce organization
 
-###`grunt setup`
+####`grunt setup`
 This grunt task updates your Cinnamon settings based on cinnamon.json
 
-###`grunt deploy`
+####`grunt deploy`
 This grunt task deploys all Cinnamon tests in /src/classes directory
 
-###`grunt run`
+####`grunt run`
 This grunt task runs your Cinnamon tests.  By default, it runs all Cinnamon tests in your Salesforce organization
 
-###`grunt delete`
+####`grunt delete`
 This grunt task removes all the deployed Cinnamon tests from your Salesforce organization
 
-###`grunt uninstall`
+####`grunt uninstall`
 This grunt task uninstalls Cinnamon package from your Salesforce oranization.  You must run `grunt delete` and remove all Cinnamon tests before uninstalling Cinnamon package
