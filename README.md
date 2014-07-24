@@ -24,7 +24,7 @@ This grunt task updates your Cinnamon settings based on cinnamon.json
 This grunt task deploys all Cinnamon tests in /src/classes directory
 
 ####`grunt run`
-This grunt task runs your Cinnamon tests.  By default, it runs all Cinnamon tests in your Salesforce organization
+This grunt task runs your Cinnamon tests.  By default, it runs all Cinnamon tests in your Salesforce organization.  When test run finishes, all test results are written to `output.xml` in ant directory.
 
 ####`grunt delete`
 This grunt task removes all the deployed Cinnamon tests from your Salesforce organization
