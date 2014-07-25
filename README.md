@@ -44,3 +44,16 @@ When you are setting up Cinnamon for the first time, follow the steps below to i
 4. Run `grunt deploy` to deploy a sample Cinnamon test
 5. Run `grunt run`
 6. Find output.xml in /ant directory after your test is completed
+
+--
+###Set up Cinnamon in Jenkins
+If your team is using Jenkins to manage builds and run automated tests, you can easily create a job in Jenkins to schedule and trigger Cinnamon tests by following the instructions below
+
+1. Copy `cinnamon-job` directory
+2. Paste it into `jobs` directory under your Jenkins' root directory
+3. Edit at leaste the following parameter strings in config.xml
+ * USERNAME
+ * PASSWORD
+ * SERVERURL
+4. Restart your Jenkins
+5. Run your new Jenkins job
