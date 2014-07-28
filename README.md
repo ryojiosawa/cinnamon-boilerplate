@@ -17,8 +17,8 @@ The following commands are available to help you set up and manage your Cinnamon
 ####Install Cinnamon package
 `grunt install`
 
-####Update Cinnamon configs in cinnamon.json
-`grunt setup`
+####Update Cinnamon configs
+`grunt setup` - this task will update settings from cinnamon.json
 
 ####Deploy Cinnamon tests into your Salesforce organization
 `grunt deploy` - this task will deploy all Cinnamon test classes in /src/classes directory
