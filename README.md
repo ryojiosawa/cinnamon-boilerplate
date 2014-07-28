@@ -2,38 +2,39 @@
 
 Cinnamon Boilerplate is a Force.com project template that helps you kickstart and manage your Cinnamon project by providing a set of useful commands.
 
-###To set up Cinnamon Boilerplate
-1. `git clone https://github.com/ryojiosawa/cinnamon-boilerplate`
-2. `cd cinnamon-boilerplate`
-3. `npm install` - this downloads all dependent packages Cinnamon Boilerplate needs
+##To set up Cinnamon Boilerplate
+1. Clone Cinnamon Boilerplate git repo `git clone https://github.com/ryojiosawa/cinnamon-boilerplate`
+2. cd into cinnamon-boilerplate directory
+3. Run `npm install` to download all dependent packages
 4. Edit cinnamon.json
 
 That’s all it!  You’re now good to go!
 
 --
-###Use Cinnamon Boilerplate
-Use the following commands to manage your Cinnamon project
+##Usage
 
-####`grunt install`
-This grunt task installs the most recent version of Cinnamon package into your Salesforce organization
+####Install Cinnamon package
+`grunt install`
 
-####`grunt setup`
-This grunt task updates your Cinnamon settings based on cinnamon.json
+####Update Cinnamon configs in cinnamon.json
+`grunt setup`
 
-####`grunt deploy`
-This grunt task deploys all Cinnamon tests in /src/classes directory
+####Deploy Cinnamon tests into your Salesforce organization
+`grunt deploy` - this task will deploy all Cinnamon test classes in /src/classes directory
 
-####`grunt show`
-This grunt task shows all Cinnamon tests deployed to your Salesforce organization
 
-####`grunt run`
-This grunt task runs your Cinnamon tests.  By default, it runs all Cinnamon tests in your Salesforce organization.  When test run finishes, all test results are written to `output.xml` in ant directory.
+####Show all Cinnamon tests deployed to your Salesforce organization
+`grunt show`
 
-####`grunt delete`
-This grunt task removes all the deployed Cinnamon tests from your Salesforce organization
 
-####`grunt uninstall`
-This grunt task uninstalls Cinnamon package from your Salesforce oranization.  You must run `grunt delete` and remove all Cinnamon tests before uninstalling Cinnamon package
+####Run Cinnamon tests
+`grunt run` - this task runs all of your Cinnamon tests by default.  When test run is completed, `output.xml` is created in /ant directory.
+
+####Delete Cinnamon tests from your Salesforce organization
+`grunt delete`
+
+####Uninstall Cinnamon pacakge
+`grunt uninstall` - you must first run `grunt delete` and remove all Cinnamon tests before uninstalling Cinnamon package
 
 --
 When you are setting up Cinnamon for the first time, follow the steps below to install, setup, and run a sample Cinnamon test
