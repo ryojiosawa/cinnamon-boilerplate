@@ -12,7 +12,7 @@ That’s all it!  You’re now good to go!
 
 --
 ##Usage
-The following commands are available to set up and manage your Cinnamon project.  Run these commands at the root of your Cinnamon project.
+The following commands are available to help you set up and manage your Cinnamon project.  Run these commands at the root of your Cinnamon project.
 
 ####Install Cinnamon package
 `grunt install`
