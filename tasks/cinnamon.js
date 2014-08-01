@@ -12,7 +12,9 @@ module.exports = function (grunt) {
     var config = grunt.file.readJSON('./cinnamon.json');
 
     grunt.registerTask('setup', function () {
-        var conn = new jsforce.Connection(),
+        var conn = new jsforce.Connection({
+                loginUrl: config.serverUrl
+            }),
             done = this.async();
 
         async.series({
@@ -68,13 +70,19 @@ module.exports = function (grunt) {
                 });
             }
         }, function (err, results) {
-            grunt.log.writeln("Setup completed successfully");
+            if (err) {
+                grunt.log.writeln(err);
+            } else {
+                grunt.log.writeln("Setup completed successfully");
+            }
             done();
         });
     });
 
     grunt.registerTask('show', function () {
-        var conn = new jsforce.Connection(),
+        var conn = new jsforce.Connection({
+                loginUrl: config.serverUrl
+            }),
             done = this.async(),
             tests;
 
