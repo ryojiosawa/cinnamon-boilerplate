@@ -1,5 +1,6 @@
 /**
-* This is a sample Cinnamon test
+* This is a sample Cinnamon test that updates the Account record
+* This Cinnamon test uses AccountPageObject.cls to interact with the Account Edit UI page
 */
 public class TestCinnamonSampleTest extends cinnamon.BaseTest {
 
@@ -15,11 +16,21 @@ public class TestCinnamonSampleTest extends cinnamon.BaseTest {
         return '/' + accId;
     }
 
-    public override void test(cinnamon.Context context) {    
+    public override void test(cinnamon.Context context) {
         String accId = (String) context.get('accId');
+
+        AccountPageObject page = (AccountPageObject) context.getPageObject(AccountPageObject.class);
+        page.initializePageObject();
+
+        page.clickEdit()
+            .typeAccountNameField('Cinnamon Account')
+            .typeAccountSiteField('San Francisco')
+            .clickSave();
 
         Account a = [select name, site from Account where Id = :accId];
         System.assert(a != null);
+        System.assertEquals(a.name, 'Cinnamon Account');
+        System.assertEquals(a.site, 'San Francisco');
     }
     
     public override void tearDown(cinnamon.Context context) {
